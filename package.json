@@ -36,7 +36,8 @@
     "proj4js-defs": "0.0.1",
     "request": "^2.67.0",
     "request-promise": "^3.0.0",
-    "yargs": "^3.31.0"
+    "yargs": "^3.31.0",
+    "pg": ""
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
