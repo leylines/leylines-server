@@ -15,3 +15,7 @@
 /npm-debug.log
 
 terriajs.pid
+
+# config-files
+serverconfig.json
+proxyauth.json
