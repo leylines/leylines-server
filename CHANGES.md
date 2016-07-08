@@ -1,3 +1,9 @@
+### 2.5.0
+
+* Support AWS S3 as a share data (URL shortener) backend.
+* Tweak behaviour of data provided by `/share` when behind proxies.
+* v2.4.0 accidentally required NodeJS 5, when previously it worked on 0.10.  This version restores support back to NodeJS 4.
+
 ### 2.4.0
 
 * Support `maxConversionSize` parameter to determine what sized files can be converted. Still defaults to 1MB.
@@ -6,11 +12,12 @@
 * Enable 'strict' argument mode. This helps catch mistyped argument names.
 * Support creating and resolving short URLs with different, prefixed providers.
 * Provide /serverconfig endpoint to retrieve information about how the server is configured, including version.
-* Config files (config.json and proxyauth.json) are now interpreted as JSON5, so they can include `//` and `/* */` comments. 
+* Config files (config.json and proxyauth.json) are now interpreted as JSON5, so they can include `//` and `/* */` comments.
 * Deprecation warning: `#` comments in config files will be removed in version 3.
 * With "--public false", now run just one CPU and don't restart on crashes, to facilitate development and testing.
 * All API features are now being moved to `/api/v1` (eg `/api/v1/ping`). They are currently available also under `/ping` but will be removed.
 * Verbose output and logging can be enabled with `--verbose`.
+* Support `hostName` parameter in config file, to provide better URLs.
 
 ### 2.3.0
 

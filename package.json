@@ -1,7 +1,11 @@
 {
   "name": "terriajs-server",
-  "version": "2.3.0",
+  "version": "2.5.0",
   "description": "NodeJS server for TerriaJS, consisting of a CORS proxy, proj4 CRS lookup service, ogr2ogr conversion service, and express static server.",
+  "engineStrict": true,
+  "engines": {
+    "node": "^4.0.0"
+  },
   "main": "lib/app.js",
   "scripts": {
     "test": "jasmine",
@@ -23,6 +27,8 @@
   },
   "homepage": "https://github.com/TerriaJS/TerriaJS-Server",
   "dependencies": {
+    "aws-sdk": "^2.4.4",
+    "base-x": "^1.0.4",
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.0",
     "compression": "^1.6.0",
@@ -37,6 +43,8 @@
     "request": "^2.67.0",
     "request-promise": "^3.0.0",
     "yargs": "^3.31.0",
+    "when": "^3.7.7",
+    "yargs": "^4.7.1",
     "pg": ""
   },
   "devDependencies": {
