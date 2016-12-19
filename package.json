@@ -1,7 +1,7 @@
 {
-  "name": "terriajs-server",
+  "name": "leylines-server",
   "version": "2.6.2",
-  "description": "NodeJS server for TerriaJS, consisting of a CORS proxy, proj4 CRS lookup service, ogr2ogr conversion service, and express static server.",
+  "description": "NodeJS server for leylines, consisting of a CORS proxy, proj4 CRS lookup service, ogr2ogr conversion service, and express static server.",
   "engineStrict": true,
   "engines": {
     "node": ">=4.0.0"
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TerriaJS/TerriaJS-Server"
+    "url": "https://github.com/leylines/leylines-server"
   },
   "keywords": [
     "terriajs",
@@ -23,9 +23,9 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/TerriaJS/TerriaJS-Server/issues"
+    "url": "https://github.com/leylines/leylines-server/issues"
   },
-  "homepage": "https://github.com/TerriaJS/TerriaJS-Server",
+  "homepage": "https://github.com/leylines/leylines-server",
   "dependencies": {
     "aws-sdk": "^2.4.4",
     "base-x": "^1.0.4",
