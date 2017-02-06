@@ -1,23 +1,69 @@
 'use strict';
 
-exports.createGrid = function(req, res, connectionString) {
+exports.createGrid = function(req, res, connectionString, callback) {
 
 	var grid   = require('./createGrid');
 	var czml   = require('./createCzml');
 	var math   = require('./Math');
 	var solids = require('./platonicSolids');
+    var grids  = require('./grids.js');
+    var geometry = require('./createGeometry');
+    var postgis = require('./postGIS');
+
+    var async  = require('async');
 
 	var czmlfile = [];
 	var rowdetails = [];
 
+    var lat = req.params.lat1;
+    var lon = req.params.lon1;
 	var azi = -math.radians(req.params.azi);
 
-	czml.createHeader(czmlfile);
-	rowdetails = solids.calculateGridPoints(req.params.lat1, req.params.lon1, azi, req.params.shape, req.params.type);
+    var shape = req.params.shape;
+    var type = req.params.type;
 
-	grid.createGrid(connectionString, rowdetails, req.params.shape, req.params.type, czmlfile, function(results) {
-		return res.json(results);
-	});
+    var colorMain  = [255,255,66];
+    var colorMinor = [255,165,0];
+    var distanceMain   = 60000.0;
+    var distanceMinor  = 30000.0;
+
+	czml.createHeader(czmlfile);
+	rowdetails = solids.calculateGridPoints(lat, lon, azi, shape, type, czmlfile);
+
+    switch (type) {
+       case "points":
+          async.waterfall([
+             geometry.createPoints(rowdetails, 1, czmlfile)
+          ], function(err, czmlfile){
+             callback(err, czmlfile);
+          });
+          return;
+       case "area":
+          async.waterfall([
+             czmlfile = geometry.createPoints(rowdetails, 0, czmlfile),
+             czmlfile = geometry.createArea(grids.area + shape, czmlfile)
+          ], function(err, czmlfile){
+             callback(err, czmlfile);
+          });
+          return;
+       case "1":
+          async.waterfall([
+             geometry.createCorridor(connectionString, rowdetails, grids.main + shape, distanceMain, colorMain, czmlfile),
+             postgis.pgFindPOI,
+          ], function(err, czmlfile){
+             callback(err, czmlfile);
+          });
+          return;
+       case "2":
+          async.waterfall([
+             geometry.createCorridor(connectionString, data, grids.minor + shape, distanceMinor, colorMinor, czmlfile),
+             postgis.pgFindPOI,
+          ], function(err, czmlfile){
+             callback(err, czmlfile);
+          });
+          return;
+    }
+	callback(err, results);
 
 };
 

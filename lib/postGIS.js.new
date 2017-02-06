@@ -9,11 +9,14 @@ exports.pgFindPOI = function(connectionString, data, lines, distance, color, czm
    pg.connect(connectionString, function(err, client) {
 
       if(err) {
-         console.log(err);
          callback(err, null);
       }
 
-      client.query("CREATE TEMP TABLE temp_grid(gid serial primary key, geom geometry(MultiLinestringZ,4326))");
+      client.query("CREATE TEMP TABLE temp_grid(gid serial primary key, geom geometry(MultiLinestringZ,4326))", function(err, result) {
+         if(err) {
+            callback(err, null);
+         }   
+      });
 
       var multilinestring = []; 
       for (var i=0, tot=lines.length; i<tot; i++) {
@@ -51,23 +54,28 @@ exports.pgCreatePoint = function(connectionString, select, type, scale, czmlfile
 
    var icon  = "/images/icons/" + type.toLowerCase() + ".png";
 
-   pg.connect(connectionString, function(err, client, done) {
-
-      var query = client.query(select);
-      var id = 1;
-
+   pg.connect(connectionString, function(err, client) {
+      if(err) {
+         callback(err, null);
+         return;
+      }
+      var query = client.query(select, function(err, result) {
+         if(err) {
+            client.end();
+            callback(err, null);
+            return;
+         }
+      });
       query.on('row', function(row) {
-
          var description = html.createFeatureInfo(row);
-
-         czmlfile = czml.createPoint(id, row.site, description, icon, scale, row.x_coord, row.y_coord, row.z_coord, czmlfile);
-         id++;
+         czmlfile = czml.createPoint(row.id, row.site, description, icon, scale, row.x_coord, row.y_coord, row.z_coord, czmlfile);
       });
       query.on('end', function () {
          client.end();
-         callback(err, czmlfile);
+         callback(null, czmlfile);
       });
    });
+
 };
 
 exports.pgCreateLine = function(connectionString, maintable, linewidth, color, czmlfile, callback) {

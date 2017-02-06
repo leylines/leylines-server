@@ -18,8 +18,11 @@ module.exports = function(options) {
   });
   router.get('/points/:schema/:table/:type', function(req, res) {
       leylines.createPOI(req, res, pgConnectionString, function(err, result) {
-          if (err) { return next(err); }
-          return res.json(result);
+          if (err) {
+             console.log(err);
+          } else {
+             return res.json(result);
+          }
       });
   });
   router.get('/sites/:schema/:table/:type/:icon', function(req, res) {
