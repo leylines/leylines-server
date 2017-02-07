@@ -41,14 +41,14 @@ exports.createGrid = function(req, res, connectionString, callback) {
        case "area":
           async.waterfall([
              czmlfile = geometry.createPoints(rowdetails, 0, czmlfile),
-             czmlfile = geometry.createArea(grids.area + shape, czmlfile)
+             czmlfile = geometry.createArea(eval(grids.area + shape), czmlfile)
           ], function(err, czmlfile){
              callback(err, czmlfile);
           });
           return;
        case "1":
           async.waterfall([
-             geometry.createCorridor(connectionString, rowdetails, grids.main + shape, distanceMain, colorMain, czmlfile),
+             geometry.createCorridor(connectionString, rowdetails, eval('grids.main' + shape), distanceMain, colorMain, czmlfile),
              postgis.pgFindPOI,
           ], function(err, czmlfile){
              callback(err, czmlfile);
