@@ -13,7 +13,7 @@ exports.createGrid = function(req, res, connectionString, callback) {
     var async  = require('async');
 
 	var czmlfile = [];
-	var rowdetails = [];
+	var points = [];
 
     var lat = req.params.lat1;
     var lon = req.params.lon1;
@@ -28,36 +28,36 @@ exports.createGrid = function(req, res, connectionString, callback) {
     var distanceMinor  = 30000.0;
 
 	czml.createHeader(czmlfile);
-	rowdetails = solids.calculateGridPoints(lat, lon, azi, shape, type, czmlfile);
+	points = solids.calculateGridPoints(lat, lon, azi, shape, type, czmlfile);
 
     switch (type) {
        case "points":
           async.waterfall([
-             geometry.createPoints(rowdetails, 1, czmlfile)
+             geometry.createPoints(points, 1, czmlfile)
           ], function(err, czmlfile){
              callback(err, czmlfile);
           });
           return;
        case "area":
           async.waterfall([
-             czmlfile = geometry.createPoints(rowdetails, 0, czmlfile),
-             czmlfile = geometry.createArea(eval(grids.area + shape), czmlfile)
+             czmlfile = geometry.createPoints(points, 0, czmlfile),
+             czmlfile = geometry.createArea(eval('grids.area' + shape), czmlfile)
           ], function(err, czmlfile){
              callback(err, czmlfile);
           });
           return;
        case "1":
           async.waterfall([
-             geometry.createCorridor(connectionString, rowdetails, eval('grids.main' + shape), distanceMain, colorMain, czmlfile),
-             postgis.pgFindPOI,
+             geometry.createCorridor(connectionString, points, eval('grids.main' + shape), distanceMain, colorMain, czmlfile),
+             postgis.pgFindPOI
           ], function(err, czmlfile){
              callback(err, czmlfile);
           });
           return;
        case "2":
           async.waterfall([
-             geometry.createCorridor(connectionString, data, grids.minor + shape, distanceMinor, colorMinor, czmlfile),
-             postgis.pgFindPOI,
+             geometry.createCorridor(connectionString, points, eval('grids.minor' + shape), distanceMinor, colorMinor, czmlfile),
+             postgis.pgFindPOI
           ], function(err, czmlfile){
              callback(err, czmlfile);
           });
