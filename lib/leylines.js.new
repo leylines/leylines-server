@@ -2,30 +2,30 @@
 
 exports.createGrid = function(req, res, connectionString, callback) {
 
-	var grid   = require('./createGrid');
-	var czml   = require('./createCzml');
-	var math   = require('./Math');
-	var solids = require('./platonicSolids');
-    var grids  = require('./grids.js');
-    var geometry = require('./createGeometry');
-    var postgis = require('./postGIS');
+	var async    = require('async');
 
-    var async  = require('async');
+	var grid     = require('./createGrid');
+	var czml     = require('./createCzml');
+	var math     = require('./Math');
+	var solids   = require('./platonicSolids');
+	var grids    = require('./grids.js');
+	var geometry = require('./createGeometry');
+	var postgis  = require('./postGIS');
 
 	var czmlfile = [];
 	var points = [];
 
-    var lat = req.params.lat1;
-    var lon = req.params.lon1;
+	var lat = req.params.lat1;
+	var lon = req.params.lon1;
 	var azi = -math.radians(req.params.azi);
 
-    var shape = req.params.shape;
-    var type = req.params.type;
+	var shape = req.params.shape;
+	var type = req.params.type;
 
-    var colorMain  = [255,255,66];
-    var colorMinor = [255,165,0];
-    var distanceMain   = 60000.0;
-    var distanceMinor  = 30000.0;
+	var colorMain  = [255,255,66];
+	var colorMinor = [255,165,0];
+	var distanceMain   = 60000.0;
+	var distanceMinor  = 30000.0;
 
 	czml.createHeader(czmlfile);
 	points = solids.calculateGridPoints(lat, lon, azi, shape, type, czmlfile);
