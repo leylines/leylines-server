@@ -1,6 +1,6 @@
 {
   "name": "leylines-server",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "NodeJS server for leylines, consisting of a CORS proxy, proj4 CRS lookup service, ogr2ogr conversion service, and express static server.",
   "engineStrict": true,
   "engines": {
@@ -28,7 +28,7 @@
   "homepage": "https://github.com/leylines/leylines-server",
   "dependencies": {
     "aws-sdk": "^2.4.4",
-    "base-x": "^1.0.4",
+    "base-x": "^2.0.4",
     "basic-auth": "^1.0.4",
     "body-parser": "^1.15.0",
     "compression": "^1.6.0",
@@ -38,8 +38,12 @@
     "geodesy": "",
     "json5": "^0.5.0",
     "morgan": "^1.7.0",
+<<<<<<< HEAD
     "ogr2ogr": "^0.5.1",
     "pg": "",
+=======
+    "ogr2ogr": "^1.0.0",
+>>>>>>> upstream/master
     "proj4": "^2.3.12",
     "proj4js-defs": "0.0.1",
     "request": "^2.67.0",
@@ -49,6 +53,6 @@
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
-    "supertest": "^1.1.0"
+    "supertest": "^3.0.0"
   }
 }
