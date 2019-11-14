@@ -3,7 +3,7 @@
 /error.log
 
 # added by GitSavvy
-/node_modules/
+/node_modules
 
 # added by GitSavvy
 /output.log
