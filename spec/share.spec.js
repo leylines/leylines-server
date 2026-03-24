@@ -23,9 +23,9 @@ describe("share endpoint (integration, real controller)", () => {
       shareUrlPrefixes: {
         g: {
           service: "gist",
-          userAgent: "TerriaJS-Server",
-          gistFilename: "terriajs-server-catalog.json",
-          gistDescription: "TerriaJS Shared catalog"
+          userAgent: "Leylines-Server",
+          gistFilename: "leylines-server-catalog.json",
+          gistDescription: "Leylines Shared catalog"
         }
       },
       newShareUrlPrefix: "g",
