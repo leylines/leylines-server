@@ -1,5 +1,5 @@
 {
-  "name": "leylinesjs-server",
+  "name": "leylines-server",
   "version": "5.0.0-alpha.1",
   "description": "NodeJS server for TerriaJS, consisting of a CORS proxy, proj4 CRS lookup service, and express static server.",
   "engineStrict": true,
@@ -8,7 +8,7 @@
   },
   "type": "module",
   "exports": {
-    "./terriajs-server.js": "./terriajs-server.js",
+    "./leylines-server.js": "./leylines-server.js",
     ".": "./lib/app.js"
   },
   "scripts": {
@@ -19,20 +19,20 @@
     "format": "prettier --write ."
   },
   "bin": {
-    "leylinesjs-server": "leylinesjs-server.js"
+    "leylines-server": "leylines-server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/leylines/leylinesjs-server"
+    "url": "https://github.com/leylines/leylines-server"
   },
   "keywords": [
-    "leylinesjs"
+    "leylines"
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/leylines/leylinesjs-server/issues"
+    "url": "https://github.com/leylines/leylines-server/issues"
   },
-  "homepage": "https://github.com/leylines/leylinesjs-server",
+  "homepage": "https://github.com/leylines/leylines-server",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1001.0",
     "base-x": "^5.0.1",
