@@ -1,7 +1,7 @@
 {
   "name": "leylines-server",
   "version": "5.0.0-alpha.2",
-  "description": "NodeJS server for TerriaJS, consisting of a CORS proxy, proj4 CRS lookup service, and express static server.",
+  "description": "NodeJS server for Leylines, consisting of a CORS proxy, proj4 CRS lookup service, and express static server.",
   "engineStrict": true,
   "engines": {
     "node": ">=22.0.0"
