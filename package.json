@@ -9,8 +9,12 @@
   "type": "module",
   "exports": {
     "./leylines-server.js": "./leylines-server.js",
-    ".": "./lib/app.js"
+    ".": {
+      "default": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
   },
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "jasmine",
     "lint": "eslint .",
@@ -34,7 +38,7 @@
   },
   "homepage": "https://github.com/leylines/leylines-server",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1017.0",
+    "@aws-sdk/client-s3": "^3.1059.0",
     "base-x": "^5.0.1",
     "basic-auth": "^2.0.1",
     "body-parser": "^2.2.2",
@@ -44,30 +48,30 @@
     "express": "^5.2.1",
     "json5": "^2.2.3",
     "leylines-solids": "https://github.com/leylines/leylines-solids#main",
-    "morgan": "^1.10.1",
+    "morgan": "^1.11.0",
     "node-cron": "^4.2.1",
     "pg": "^8.17.2",
     "proj4-cli-defs": "^2.1.0",
     "range_check": "^4.1.0",
-    "rate-limiter-flexible": "^9.1.1",
-    "undici": "^7.24.6",
+    "rate-limiter-flexible": "^11.1.0",
+    "undici": "^8.3.0",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@eslint/json": "^1.2.0",
-    "@testcontainers/localstack": "^11.13.0",
+    "@eslint/json": "^2.0.0",
+    "@testcontainers/localstack": "^12.0.1",
     "@types/express": "^5.0.6",
-    "@types/node": "^25.5.0",
-    "eslint": "^10.1.0",
+    "@types/node": "^25.9.1",
+    "eslint": "^10.4.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-n": "^17.24.0",
-    "globals": "^17.4.0",
+    "eslint-plugin-n": "^18.0.1",
+    "globals": "^17.6.0",
     "http-proxy": "^1.18.1",
-    "jasmine": "^6.1.0",
-    "msw": "^2.12.14",
-    "prettier": "^3.8.1",
+    "jasmine": "^6.2.0",
+    "msw": "^2.14.6",
+    "prettier": "^3.8.3",
     "supertest": "^7.2.2",
-    "testcontainers": "^11.13.0"
+    "testcontainers": "^12.0.1"
   }
 }
